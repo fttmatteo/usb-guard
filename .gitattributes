@@ -1,0 +1,17 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# C# and XAML specific targeting
+*.cs text diff=csharp
+*.xaml text
+*.xml text
+*.md text
+*.json text
+
+# Binaries - Do not modify line endings
+*.ico binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.dll binary
+*.exe binary

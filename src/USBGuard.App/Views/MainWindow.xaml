@@ -1,0 +1,244 @@
+<ui:FluentWindow x:Class="USBGuard.App.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:viewmodels="clr-namespace:USBGuard.App.ViewModels"
+        mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        Title="USB Guard v1.0.0" Height="650" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        Icon="pack://application:,,,/Assets/guard.ico"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        Closed="Window_Closed">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <tb:TaskbarIcon x:Name="TrayIcon"
+                        ToolTipText="USB Guard está protegiendo tu equipo"
+                        MenuActivation="RightClick"
+                        IconSource="pack://application:,,,/Assets/guard.ico"
+                        TrayMouseDoubleClick="TrayIcon_TrayMouseDoubleClick">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Mostrar panel de control" Click="ShowConfig_Click" />
+                    <Separator />
+                    <MenuItem Header="Salir" Click="ExitApp_Click" />
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+
+        <ui:TitleBar Grid.Row="0" Title="USB Guard v1.0.0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/Assets/guard.ico" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
+            <StackPanel Margin="36,20,36,36">
+                <Grid Margin="0,0,0,36">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <ui:SymbolIcon Symbol="Shield24" FontSize="56" 
+                                   Foreground="{Binding IsArmed, Converter={StaticResource BoolToColorConverter}}" 
+                                   VerticalAlignment="Center"/>
+                    
+                    <StackPanel Grid.Column="1" Margin="20,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding StatusText}" FontSize="32" FontWeight="SemiBold" 
+                                   Foreground="{Binding IsArmed, Converter={StaticResource BoolToColorConverter}}"/>
+                        <TextBlock Text="Protege tu PC mediante llaves de hardware USB." 
+                                   FontSize="15" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+
+                    <ui:Button Grid.Column="2" 
+                               Content="{Binding IsArmed, Converter={StaticResource BoolToArmButtonTextConverter}}" 
+                               Command="{Binding ToggleArmCommand}"
+                               Icon="{ui:SymbolIcon Power24}"
+                               Appearance="{Binding IsArmed, Converter={StaticResource ArmButtonAppearanceConverter}}"
+                               Width="160" Height="48" FontSize="16" FontWeight="Medium" VerticalAlignment="Center" />
+                </Grid>
+
+                <TextBlock Text="Llave de Desbloqueo" FontSize="22" FontWeight="SemiBold" Margin="0,0,0,16" />
+                
+                <ui:CardControl Icon="UsbPort20" Margin="0,0,0,8">
+                    <ui:CardControl.Header>
+                        <StackPanel>
+                            <TextBlock Text="Unidad Seleccionada" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock Text="Escoge el USB que actuará como llave" FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </ui:CardControl.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox ItemsSource="{Binding ConnectedDrives}" SelectedItem="{Binding SelectedDrive}" Width="200" Margin="0,0,10,0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding DriveLetter}" FontWeight="SemiBold" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding VolumeName}" TextTrimming="CharacterEllipsis" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ui:Button Icon="{ui:SymbolIcon ArrowClockwise20}" Command="{Binding RefreshDrivesCommand}" Appearance="Secondary" ToolTip="Escanear USBs" />
+                    </StackPanel>
+                </ui:CardControl>
+
+                <ui:CardControl Icon="Key20" Margin="0,0,0,40">
+                    <ui:CardControl.Header>
+                        <StackPanel>
+                            <TextBlock Text="Contraseña de Seguridad" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock Text="Asigna una contraseña para encriptar tu llave" FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </ui:CardControl.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <ui:PasswordBox x:Name="EncryptionKeyBox" PasswordChanged="EncryptionKeyBox_PasswordChanged" PlaceholderText="Tu contraseña" Width="200" Margin="0,0,10,0"/>
+                        <ui:Button Content="Encriptar" Command="{Binding CreateKeyCommand}" Appearance="Primary" Icon="{ui:SymbolIcon Save20}" />
+                    </StackPanel>
+                </ui:CardControl>
+
+                <ui:CardControl Icon="ShieldKeyhole24" Margin="0,0,0,40">
+                    <ui:CardControl.Header>
+                        <StackPanel>
+                            <TextBlock Text="Llave Maestra de Recuperación" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock Text="Código único para desbloquear" FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </ui:CardControl.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <ui:PasswordBox Password="{Binding MasterKeyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Aún no generada (o escribe la tuya)" Width="200" Margin="0,0,10,0" FontWeight="Bold"/>
+                        <ui:Button Command="{Binding GenerateMasterKeyCommand}" Appearance="Primary" Icon="{ui:SymbolIcon ArrowClockwise20}" ToolTip="Generar una nueva Llave Maestra aleatoria" Margin="0,0,5,0" />
+                        <ui:Button Command="{Binding CopyMasterKeyCommand}" Appearance="Secondary" Icon="{ui:SymbolIcon Copy20}" ToolTip="Copiar" Margin="0,0,5,0" />
+                        <ui:Button Command="{Binding ExportMasterKeyCommand}" Appearance="Secondary" Icon="{ui:SymbolIcon Document20}" ToolTip="Exportar a TXT" />
+                    </StackPanel>
+                </ui:CardControl>
+
+                <StackPanel Margin="0,0,0,40">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <ui:SymbolIcon Symbol="History20" FontSize="24" Margin="0,0,10,0"/>
+                        <TextBlock Text="Registro de Autorizaciones" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="Lista de todas las memorias USB que tienen acceso para desbloquear este equipo." FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Margin="34,0,0,16"/>
+
+                    <ItemsControl ItemsSource="{Binding Config.ConfiguredUsbHistory}" Margin="34,0,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{DynamicResource ControlFillColorDefaultBrush}" 
+                                        BorderBrush="{DynamicResource SurfaceStrokeColorDefaultBrush}" 
+                                        BorderThickness="1" CornerRadius="6" Padding="14,10" Margin="0,0,0,8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <ui:SymbolIcon Symbol="Key20" FontSize="28" Foreground="{DynamicResource SystemAccentColorPrimaryBrush}" VerticalAlignment="Center" Margin="0,0,16,0" />
+                                        
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding}" FontWeight="Medium" FontSize="13" TextTrimming="CharacterEllipsis" TextWrapping="WrapWithOverflow" />
+                                        </StackPanel>
+
+                                        <ui:Button Grid.Column="2" Icon="{ui:SymbolIcon Delete20}" Appearance="Danger" 
+                                                   Padding="10,6" Margin="10,0,0,0" VerticalAlignment="Center"
+                                                   Command="{Binding DataContext.DeleteFromHistoryCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" 
+                                                   CommandParameter="{Binding}" ToolTip="Olvidar y revocar llave" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    
+                    <TextBlock Text="No hay ninguna llave autorizada todavía." Margin="34,10,0,0" FontStyle="Italic" Foreground="{DynamicResource TextFillColorTertiaryBrush}">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Config.ConfiguredUsbHistory.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+
+                <TextBlock Text="Ajustes del Sistema" FontSize="22" FontWeight="SemiBold" Margin="0,0,0,16" />
+                
+                <ui:CardControl Icon="ShieldTask20" Margin="0,0,0,8">
+                    <ui:CardControl.Header>
+                        <StackPanel>
+                            <TextBlock Text="Armado Automático" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock Text="Activar la protección apenas inicie el programa" FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </ui:CardControl.Header>
+                    <ui:ToggleSwitch IsChecked="{Binding StartArmed}" />
+                </ui:CardControl>
+                
+                <ui:CardControl Icon="ArrowUpRight20" Margin="0,0,0,8">
+                    <ui:CardControl.Header>
+                        <StackPanel>
+                            <TextBlock Text="Iniciar con Windows" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock Text="Abrir el programa silenciosamente al encender tu PC" FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </ui:CardControl.Header>
+                    <ui:ToggleSwitch IsChecked="{Binding StartWithWindows}" />
+                </ui:CardControl>
+
+               <ui:CardControl Icon="SpeakerMute20" Margin="0,0,0,8">
+                    <ui:CardControl.Header>
+                        <StackPanel>
+                            <TextBlock Text="Silenciar dispositivo" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock Text="Apaga el volumen maestro cuando retiras el USB" FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </ui:CardControl.Header>
+                    <ui:ToggleSwitch IsChecked="{Binding MuteWhileLocked}" />
+                </ui:CardControl>
+
+                <ui:CardControl Icon="Color20" Margin="0,0,0,8">
+                    <ui:CardControl.Header>
+                        <StackPanel>
+                            <TextBlock Text="Apariencia" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock Text="Elige el estilo visual del programa" FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </ui:CardControl.Header>
+                    <ComboBox SelectedIndex="{Binding ThemeModeIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250">
+                        <ComboBoxItem Content="Sincronizar con Windows (Automático)" />
+                        <ComboBoxItem Content="Modo Claro" />
+                        <ComboBoxItem Content="Modo Oscuro" />
+                    </ComboBox>
+                </ui:CardControl>
+
+                <ui:CardControl Icon="LockClosed20" Margin="0,0,0,8">
+                    <ui:CardControl.Header>
+                        <StackPanel>
+                            <TextBlock Text="Modo de Bloqueo" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock Text="Elige cómo se comportará la pantalla bloqueada" FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </ui:CardControl.Header>
+                    <ComboBox SelectedIndex="{Binding LockModeIndex}" Width="250">
+                        <ComboBoxItem Content="Bloqueo clásico de Windows" />
+                        <ComboBoxItem Content="Pantalla personalizada USB Guard" />
+                    </ComboBox>
+                </ui:CardControl>
+
+                <TextBlock HorizontalAlignment="Center" Margin="0,10,0,30" Foreground="{DynamicResource TextFillColorSecondaryBrush}" FontSize="13" TextAlignment="Center">
+                    Creado por <Hyperlink NavigateUri="https://github.com/fttmatteo" RequestNavigate="Hyperlink_RequestNavigate" Foreground="{DynamicResource SystemAccentColorPrimaryBrush}" TextDecorations="None">Mateo Valencia Ardila</Hyperlink>
+                    <LineBreak/>
+                    <Run FontSize="11.5" Foreground="{DynamicResource TextFillColorTertiaryBrush}">Software libre bajo Licencia MIT (Distribución permitida bajo la Atribución del creador original)</Run>
+                </TextBlock>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</ui:FluentWindow>

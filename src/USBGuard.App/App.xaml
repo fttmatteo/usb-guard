@@ -1,0 +1,21 @@
+<Application x:Class="USBGuard.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:converters="clr-namespace:USBGuard.App.Converters"
+             Startup="OnStartup"
+             Exit="OnExit">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary Theme="Dark" />
+                <ui:ControlsDictionary />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
+            <converters:BoolToArmButtonTextConverter x:Key="BoolToArmButtonTextConverter" />
+            <converters:EnumToIndexConverter x:Key="EnumToIndexConverter" />
+            <converters:ArmButtonAppearanceConverter x:Key="ArmButtonAppearanceConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
