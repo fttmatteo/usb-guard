@@ -4,11 +4,15 @@
 
 A powerful Zero-Trust security system for Windows environments that transforms any standard USB drive into a Cryptographic Master Key to lock and unlock your computer.
 
-<p align="center">
+<p>
   <img src="https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet" alt=".NET 10" />
   <img src="https://img.shields.io/badge/WPF-UI-0078D4?style=for-the-badge&logo=windows" alt="WPF UI" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
 </p>
+
+[![Download usb-guard](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/usb-guard/files/latest/download)
+
+[![Download usb-guard](https://img.shields.io/sourceforge/dt/usb-guard.svg)](https://sourceforge.net/projects/usb-guard/files/latest/download)
 
 ## Key Features
 
