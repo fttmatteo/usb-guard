@@ -23,6 +23,9 @@ Un poderoso sistema de seguridad Zero-Trust para entornos Windows que transforma
 
 ## Instalación y Uso Rápido
 
+> [!IMPORTANT]
+> Para que el ejecutable (`.exe`) funcione correctamente, debes asegurarte de que el **Control Inteligente de Aplicaciones** (Smart App Control) de Windows esté **Desactivado** en la configuración de seguridad del sistema operativo.
+
 1. **Compilación:** Abre la solución `USBGuard.sln` en tu Visual Studio. Asegúrate de tener instalado el SDK de **.NET 10.0 para Windows (WPF)**.
 2. **Release:** Cambia el perfil de trabajo de "Debug" a "Release" para maximizar la ofuscación y el rendimiento, y presiona F5.
 3. **Tu Primera Llave:**
