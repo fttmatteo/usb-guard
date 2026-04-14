@@ -37,8 +37,8 @@ Un poderoso sistema de seguridad Zero-Trust para entornos Windows que transforma
 ## ¿Por qué USB Guard es distinto?
 
 La mayoría de los programas comerciales "baratos" solo verifican si un archivo de texto existe dentro de la USB. **USB Guard** toma ese concepto y lo fortifica:
-* Encripta la llave interna y valida el hardware matriz mediante el WMI.
-* No se deja burlar por desconexiones agresivas simuladas; espera 1.5 segundos asíncronos para permitirle a Windows asimilar las interrupciones IRQ de hardware del USB.
+* Encripta la llave interna y valida el hardware matriz mediante llamadas nativas directas al Kernel de Windows (P/Invoke a `kernel32.dll`), sin dependencias pesadas como WMI.
+* No se deja burlar por desconexiones agresivas simuladas; espera 0.5 segundos asíncronos para permitirle a Windows asimilar las interrupciones IRQ de hardware del USB.
 * Posee un Desarme de Emergencia; Si accidentalmente borras todas tus bases de llaves, abortará el disparo para evitar bloqueos perpetuos (Auto-secuestro).
 
 ## Contribuciones

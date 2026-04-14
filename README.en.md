@@ -37,8 +37,8 @@ A powerful Zero-Trust security system for Windows environments that transforms a
 ## Why is USB Guard different?
 
 Most commercial "locker" software only checks if a text file exists inside the USB. **USB Guard** takes that concept and fortifies it:
-* It encrypts the internal key and validates the matrix hardware via WMI.
-* It cannot be bypassed by simulated aggressive disconnections; it waits for 1.5 asynchronous seconds to allow Windows to assimilate the USB hardware IRQ interrupts.
+* It encrypts the internal key and validates the matrix hardware via direct native Windows Kernel API calls (P/Invoke to `kernel32.dll`), without heavy dependencies like WMI.
+* It cannot be bypassed by simulated aggressive disconnections; it waits for 0.5 asynchronous seconds to allow Windows to assimilate the USB hardware IRQ interrupts.
 * It features an Emergency Disarm; if you accidentally delete all your key databases, it will abort the trigger to prevent perpetual lockouts (Self-hijacking).
 
 ## Contributing

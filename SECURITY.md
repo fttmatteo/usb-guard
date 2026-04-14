@@ -8,7 +8,7 @@ A continuación, se indican las ramas oficiales del proyecto de código abierto 
 
 | Versión | ¿Soportada Activamente? |
 | ------- | ------------------ |
-| v1.0.x   | :white_check_mark: |
+| v1.1.x   | :white_check_mark: |
 | Antiguas | :x:                |
 
 ## Alcance y Limitaciones Actuales (v1.0.x)
