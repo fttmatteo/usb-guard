@@ -87,19 +87,22 @@ public partial class MainWindow
         {
             if (_lockScreens.Count > 0) return;
 
-            foreach (var screen in System.Windows.Forms.Screen.AllScreens)
+            // Use WPF-native screen bounds instead of WinForms Screen.AllScreens
+            double virtualLeft = SystemParameters.VirtualScreenLeft;
+            double virtualTop = SystemParameters.VirtualScreenTop;
+            double virtualWidth = SystemParameters.VirtualScreenWidth;
+            double virtualHeight = SystemParameters.VirtualScreenHeight;
+
+            if (App.Current.Services.GetService(typeof(LockScreenWindow)) is LockScreenWindow lockScreen)
             {
-                if (App.Current.Services.GetService(typeof(LockScreenWindow)) is LockScreenWindow lockScreen)
-                {
-                    lockScreen.Left = screen.Bounds.Left;
-                    lockScreen.Top = screen.Bounds.Top;
-                    lockScreen.Width = screen.Bounds.Width;
-                    lockScreen.Height = screen.Bounds.Height;
-                    lockScreen.WindowStartupLocation = WindowStartupLocation.Manual;
-                    
-                    lockScreen.Show();
-                    _lockScreens.Add(lockScreen);
-                }
+                lockScreen.Left = virtualLeft;
+                lockScreen.Top = virtualTop;
+                lockScreen.Width = virtualWidth;
+                lockScreen.Height = virtualHeight;
+                lockScreen.WindowStartupLocation = WindowStartupLocation.Manual;
+                
+                lockScreen.Show();
+                _lockScreens.Add(lockScreen);
             }
         });
     }
@@ -110,6 +113,11 @@ public partial class MainWindow
         {
             foreach (var lockScreen in _lockScreens)
             {
+                // Dispose the ViewModel to stop its timer and release wallpaper bitmap
+                if (lockScreen.DataContext is IDisposable disposable)
+                {
+                    disposable.Dispose();
+                }
                 lockScreen.Close();
             }
             _lockScreens.Clear();

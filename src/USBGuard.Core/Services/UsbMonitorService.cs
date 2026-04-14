@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Management;
 using System.Runtime.InteropServices;
 using USBGuard.Core.Interop;
 using USBGuard.Core.Models;
@@ -118,12 +117,21 @@ public class UsbMonitorService : IUsbMonitorService
     {
         try
         {
-            string driveRoot = driveLetter.TrimEnd('\\');
-            var searcher = new ManagementObjectSearcher($"SELECT VolumeSerialNumber FROM Win32_LogicalDisk WHERE Name='{driveRoot}'");
-            foreach (var obj in searcher.Get())
+            string driveRoot = driveLetter.TrimEnd('\\') + "\\";
+            if (NativeMethods.GetVolumeInformationW(
+                driveRoot, 
+                IntPtr.Zero, 
+                0, 
+                out uint serialNumber, 
+                out _, 
+                out _, 
+                IntPtr.Zero, 
+                0))
             {
-                var serial = obj["VolumeSerialNumber"]?.ToString();
-                if (serial != null) return serial;
+                // Format serial as hex (e.g., ABCD-1234)
+                uint top = (serialNumber >> 16) & 0xFFFF;
+                uint bottom = serialNumber & 0xFFFF;
+                return $"{top:X4}{bottom:X4}";
             }
         }
         catch

@@ -6,11 +6,12 @@ using USBGuard.Core.Services;
 
 namespace USBGuard.App.ViewModels;
 
-public partial class LockScreenViewModel : ObservableObject
+public partial class LockScreenViewModel : ObservableObject, IDisposable
 {
     private readonly ILockService _lockService;
     private readonly IConfigService _configService;
     private readonly DispatcherTimer _timer;
+    private bool _disposed;
 
     [ObservableProperty]
     private string _currentTime = string.Empty;
@@ -27,7 +28,7 @@ public partial class LockScreenViewModel : ObservableObject
     [ObservableProperty]
     private string _cooldownMessage = string.Empty;
 
-    private int _failedAttempts = 0;
+    private int _failedAttempts;
 
     [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
     private static extern int SystemParametersInfo(int uAction, int uParam, System.Text.StringBuilder lpvParam, int fuWinIni);
@@ -98,6 +99,15 @@ public partial class LockScreenViewModel : ObservableObject
                 CooldownMessage = string.Empty;
                 IsInputEnabled = true;
             }
+        }
+    }
+
+    public void Dispose()
+    {
+        if (!_disposed)
+        {
+            _timer.Stop();
+            _disposed = true;
         }
     }
 }

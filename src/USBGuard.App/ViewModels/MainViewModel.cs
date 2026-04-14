@@ -394,11 +394,18 @@ public partial class MainViewModel : ObservableObject
 
     private async void OnDeviceArrived(object? sender, UsbDevice device)
     {
-        await System.Threading.Tasks.Task.Delay(1500).ConfigureAwait(false);
+        await System.Threading.Tasks.Task.Delay(500).ConfigureAwait(false);
 
         App.Current.Dispatcher.Invoke(() =>
         {
-            RefreshDrivesCommand.Execute(null);
+            foreach (var drive in _usbMonitor.GetConnectedRemovableDrives())
+            {
+                if (!ConnectedDrives.Any(d => d.DriveLetter == drive.DriveLetter))
+                {
+                    ConnectedDrives.Add(drive);
+                }
+            }
+            if (SelectedDrive == null) SelectedDrive = ConnectedDrives.FirstOrDefault();
             
             if (IsArmed)
             {

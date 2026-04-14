@@ -34,6 +34,18 @@ internal static partial class NativeMethods
         public ushort dbcv_flags;
     }
 
+    [LibraryImport("kernel32.dll", EntryPoint = "GetVolumeInformationW", StringMarshalling = StringMarshalling.Utf16, SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool GetVolumeInformationW(
+        string lpRootPathName,
+        IntPtr lpVolumeNameBuffer,
+        uint nVolumeNameSize,
+        out uint lpVolumeSerialNumber,
+        out uint lpMaximumComponentLength,
+        out uint lpFileSystemFlags,
+        IntPtr lpFileSystemNameBuffer,
+        uint nFileSystemNameSize);
+
     public const int WM_DEVICECHANGE = 0x0219;
     public const int DBT_DEVICEARRIVAL = 0x8000;
     public const int DBT_DEVICEREMOVECOMPLETE = 0x8004;

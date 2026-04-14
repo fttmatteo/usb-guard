@@ -11,12 +11,12 @@
 
 
     <Grid>
-        <Border>
+        <Border CacheMode="BitmapCache">
             <Border.Background>
                 <ImageBrush ImageSource="{Binding CurrentWallpaper}" Stretch="UniformToFill"/>
             </Border.Background>
             <Border.Effect>
-                <BlurEffect Radius="80" KernelType="Gaussian"/>
+                <BlurEffect Radius="20" KernelType="Gaussian"/>
             </Border.Effect>
         </Border>
         
