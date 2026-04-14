@@ -25,3 +25,26 @@ Aun así, si consideras haber encontrado la forma matemática de romper el Cript
 1. Envía un correo electrónico privado o mensaje directo al empaquetador del proyecto (**Mateo Valencia Ardila**) con el asunto `USB GUARD VULNERABILITY`.
 2. Provee un PoC (Proof of Concept) o un código de inyección reproducible.
 3. Trataremos de mitigar la brecha publicando un "Hotfix" de seguridad dentro del ciclo semanal posterior a la lectura formal del informe. Agradecemos inmensamente a quien detecte errores letales con ánimos de ayudar.
+
+## Política de Firma de Código (Code Signing Policy)
+
+Los binarios oficiales de USB Guard son firmados digitalmente con un certificado proporcionado por la [SignPath Foundation](https://signpath.org) bajo su programa para proyectos de código abierto.
+
+### Cadena de Confianza
+
+* **Certificado emitido por:** SignPath Foundation — autoridad de certificación reconocida para proyectos OSS.
+* **Origen verificable:** Cada artefacto firmado es construido directamente desde el código fuente del repositorio oficial de GitHub mediante un pipeline CI automatizado. No se firman binarios compilados manualmente.
+* **Integridad del build:** El proceso de firma está vinculado al sistema de integración continua (GitHub Actions), garantizando que el `.exe` distribuido corresponde exactamente al código fuente público.
+
+### Verificación de Firma
+
+Los usuarios pueden verificar la autenticidad de cualquier release oficial de USB Guard:
+
+1. Click derecho sobre el archivo `.exe` → **Propiedades** → pestaña **Firmas digitales**.
+2. Verificar que el firmante sea **"SignPath Foundation"** y que el estado sea **"Esta firma digital es correcta"**.
+
+### Compromiso
+
+* Solo se firman builds generados automáticamente desde la rama `main` del repositorio oficial.
+* Ningún colaborador tiene acceso directo a la clave privada del certificado.
+* Cualquier release sin firma digital válida no debe considerarse oficial.

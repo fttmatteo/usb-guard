@@ -25,3 +25,26 @@ Even so, if you believe you have found the mathematical way to break the local `
 1. Send a private email or direct message to the project packager (**Mateo Valencia Ardila**) with the subject `USB GUARD VULNERABILITY`.
 2. Provide a PoC (Proof of Concept) or a reproducible injection code.
 3. We will try to mitigate the breach by publishing a security "Hotfix" within the weekly cycle following the formal reading of the report. We immensely thank anyone who detects lethal errors with a desire to help.
+
+## Code Signing Policy
+
+Official USB Guard binaries are digitally signed with a certificate provided by the [SignPath Foundation](https://signpath.org) under their open-source program.
+
+### Chain of Trust
+
+* **Certificate issued by:** SignPath Foundation — a recognized certificate authority for OSS projects.
+* **Verifiable origin:** Every signed artifact is built directly from the source code in the official GitHub repository through an automated CI pipeline. Manually compiled binaries are never signed.
+* **Build integrity:** The signing process is linked to the continuous integration system (GitHub Actions), ensuring that the distributed `.exe` corresponds exactly to the public source code.
+
+### Signature Verification
+
+Users can verify the authenticity of any official USB Guard release:
+
+1. Right-click on the `.exe` file → **Properties** → **Digital Signatures** tab.
+2. Verify that the signer is **"SignPath Foundation"** and the status shows **"This digital signature is OK"**.
+
+### Commitment
+
+* Only builds generated automatically from the `main` branch of the official repository are signed.
+* No contributor has direct access to the certificate's private key.
+* Any release without a valid digital signature should not be considered official.
