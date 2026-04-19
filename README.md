@@ -1,11 +1,11 @@
-﻿# 🛡️ USB Guard
+# 🛡️ USB Guard
 
 *[Read in English](README.en.md)*
 
 Un poderoso sistema de seguridad Zero-Trust para entornos Windows que transforma cualquier memoria USB común en una Llave Maestra criptográfica para bloquear y desbloquear tu ordenador.
 
 <p>
-  <img src="https://img.shields.io/badge/VersiÃ³n-1.2.2-blue.svg" alt="Versión">
+  <img src="https://img.shields.io/badge/Versión-1.2.2-blue.svg" alt="Versión">
   <img src="https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet" alt=".NET 10" />
   <img src="https://img.shields.io/badge/WPF-UI-0078D4?style=for-the-badge&logo=windows" alt="WPF UI" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
