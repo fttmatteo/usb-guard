@@ -19,14 +19,15 @@ if (!$version) {
 $versionParts = $version.Split('.')
 $maintenanceVersion = "$($versionParts[0]).$($versionParts[1]).x"
 
-Write-Host "🚀 USB Guard: Sincronizando versión $version (mantenimiento: $maintenanceVersion)..." -ForegroundColor Cyan
+Write-Host "[SYNC] USB Guard: Sincronizando version $version (mantenimiento: $maintenanceVersion)..." -ForegroundColor Cyan
 
 # Archivos a actualizar
 $files = @(
     "README.md",
     "README.en.md",
     "SECURITY.md",
-    "SECURITY.en.md"
+    "SECURITY.en.md",
+    "CHANGELOG.md"
 )
 
 foreach ($file in $files) {
@@ -40,11 +41,11 @@ foreach ($file in $files) {
     # Actualizar Badge (shields.io)
     # Patrón: .NET-10.0-512BD4 (Ejemplo, pero buscaremos por versión si existiera badge de versión)
     # Para USB Guard, buscaremos el badge que diga "Version" o "Versión"
-    $newBadgeName = if ($file -like "*.en.md") { "Version" } else { "Versión" }
+    $newBadgeName = if ($file -like "*.en.md") { "Version" } else { "Versi%C3%B3n" }
     
     # Si no existe el badge de versión todavía, lo añadiremos o actualizaremos uno existente
     # Usaremos una lógica similar a la de AI Guardian para buscar patterns de Shields.io
-    $badgeRegex = "img\.shields\.io/badge/(?:Versi[óo]n|Version)-[\d.]+-blue\.svg"
+    $badgeRegex = "img\.shields\.io/badge/(?:Versi[óo]n|Version|VersiÃ³n|Versi%C3%B3n)-[\d.]+-blue\.svg"
     $newBadge = "img.shields.io/badge/$newBadgeName-$version-blue.svg"
     
     if ($content -match $badgeRegex) {
@@ -69,8 +70,40 @@ foreach ($file in $files) {
         })
     }
 
+    # Actualizar CHANGELOG.md
+    if ($file -eq "CHANGELOG.md") {
+        $date = Get-Date -Format "yyyy-MM-dd"
+        $newHeader = "## [$version] - $date"
+        
+        if ($content -match "## \[" + [regex]::Escape($version) + "\]") {
+            # Si la versión ya existe, solo actualizamos la fecha por si acaso
+            $content = $content -replace "## \[" + [regex]::Escape($version) + "\] - \d{4}-\d{2}-\d{2}", $newHeader
+        } else {
+            # Insertar nueva versión después de la descripción inicial (regex flexible)
+            $introRegex = "(?s)Todos los cambios notables.*?este archivo\."
+            
+            $template = @"
+$newHeader
+
+### Added
+- 
+
+### Changed
+- 
+
+### Security
+- 
+"@
+            if ($content -match $introRegex) {
+                $content = $content -replace $introRegex, "$&`n`n$template"
+            } else {
+                Write-Warning "No se pudo encontrar el punto de inserción en CHANGELOG.md"
+            }
+        }
+    }
+
     $content | Set-Content $filePath -Encoding utf8
-    Write-Host "✅ Actualizado: $file" -ForegroundColor Green
+    Write-Host "[OK] Actualizado: $file" -ForegroundColor Green
 }
 
-Write-Host "✨ Sincronización de documentación completada." -ForegroundColor Yellow
+Write-Host "[DONE] Sincronizacion de documentacion completada." -ForegroundColor Yellow

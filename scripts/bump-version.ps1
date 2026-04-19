@@ -35,7 +35,7 @@ switch ($Type) {
     "Patch" { $newVersion = "$($v.Major).$($v.Minor).$($v.Build + 1)" }
 }
 
-Write-Host " b  Bumping version: $currentVersion -> $newVersion ($Type)" -ForegroundColor Cyan
+Write-Host "[BUMP] Bumping version: $currentVersion -> $newVersion ($Type)" -ForegroundColor Cyan
 
 # 2. Actualizar .csproj
 $xml.Project.PropertyGroup.Version = $newVersion
@@ -45,5 +45,5 @@ $xml.Save($projectFile)
 & "$PSScriptRoot/sync-version.ps1"
 
 # 4. Recordatorio de Changelog
-Write-Host "`n i  No olvides actualizar el CHANGELOG.md para la versión $newVersion" -ForegroundColor Yellow
-Write-Host " ✨ Proceso completado correctamente." -ForegroundColor Green
+Write-Host "`n[INFO] No olvides actualizar el CHANGELOG.md para la version $newVersion" -ForegroundColor Yellow
+Write-Host "[DONE] Proceso completado correctamente." -ForegroundColor Green

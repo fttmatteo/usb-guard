@@ -8,7 +8,7 @@ A continuación, se indican las ramas oficiales del proyecto de código abierto 
 
 | Versión | ¿Soportada Activamente? |
 | ------- | ------------------ |
-| v1.2.x | :white_check_mark: |
+| v1.6.x | :white_check_mark: |
 | Antiguas | :x:                |
 
 ## Alcance y Limitaciones Actuales
@@ -29,6 +29,19 @@ Aun así, si consideras haber encontrado la forma matemática de romper el Cript
 ## Divulgación
 
 Seguimos prácticas de divulgación responsable. No divulgaremos la vulnerabilidad hasta que haya un parche disponible y los usuarios hayan tenido tiempo de actualizar, a menos que sea en el mejor interés de la comunidad.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
