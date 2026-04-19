@@ -31,3 +31,5 @@ Aun así, si consideras haber encontrado la forma matemática de romper el Cript
 Seguimos prácticas de divulgación responsable. No divulgaremos la vulnerabilidad hasta que haya un parche disponible y los usuarios hayan tenido tiempo de actualizar, a menos que sea en el mejor interés de la comunidad.
 
 
+
+
