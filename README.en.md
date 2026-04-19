@@ -1,10 +1,11 @@
-# 🛡️ USB Guard
+﻿# 🛡️ USB Guard
 
 *[Leer en Español](README.md)*
 
 A powerful Zero-Trust security system for Windows environments that transforms any standard USB drive into a Cryptographic Master Key to lock and unlock your computer.
 
 <p>
+  <img src="https://img.shields.io/badge/Version-1.2.0-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet" alt=".NET 10" />
   <img src="https://img.shields.io/badge/WPF-UI-0078D4?style=for-the-badge&logo=windows" alt="WPF UI" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
@@ -54,4 +55,5 @@ Security is my priority. If you find a vulnerability, please refer to our policy
 Created and maintained by **[Mateo Valencia Ardila](https://github.com/fttmatteo)**.
 
 This software operates under the **MIT License**. You are free to distribute, edit, or use this architectural base even for commercial development under the mandatory condition of explicitly preserving the copyright and attribution paragraphs to Mateo Valencia as the main creator. (Read the `LICENSE` document for more legal instructions).
+
 

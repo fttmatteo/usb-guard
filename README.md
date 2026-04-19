@@ -5,6 +5,7 @@
 Un poderoso sistema de seguridad Zero-Trust para entornos Windows que transforma cualquier memoria USB común en una Llave Maestra criptográfica para bloquear y desbloquear tu ordenador.
 
 <p>
+  <img src="https://img.shields.io/badge/Versión-1.2.0-blue.svg" alt="Versión">
   <img src="https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet" alt=".NET 10" />
   <img src="https://img.shields.io/badge/WPF-UI-0078D4?style=for-the-badge&logo=windows" alt="WPF UI" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
@@ -54,4 +55,5 @@ La seguridad es mi prioridad. Si encuentras una vulnerabilidad, por favor consul
 Creado y mantenido por **[Mateo Valencia Ardila](https://github.com/fttmatteo)**.
 
 Este software operada bajo la **Licencia MIT**. Eres libre de distribuir, editar o utilizar esta base arquitectónica incluso para desarrollo comercial bajo la principal condición obligatoria de preservar explícitamente los párrafos de derechos de autor y reconocimiento a Mateo Valencia como creador matriz. (Lee el documento `LICENSE` para más instrucciones legales).
+
 
