@@ -5,7 +5,7 @@
 A powerful Zero-Trust security system for Windows environments that transforms any standard USB drive into a Cryptographic Master Key to lock and unlock your computer.
 
 <p>
-  <img src="https://img.shields.io/badge/Version-1.6.3-blue.svg" alt="Version">
+  <img src="https://img.shields.io/badge/Version-1.1.0-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet" alt=".NET 10" />
   <img src="https://img.shields.io/badge/WPF-UI-0078D4?style=for-the-badge&logo=windows" alt="WPF UI" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />

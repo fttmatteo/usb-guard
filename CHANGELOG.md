@@ -2,29 +2,7 @@
 
 Todos los cambios notables en este proyecto serán documentados en este archivo.
 
-## [1.6.3] - 2026-04-19
-
-### Added
-- 
-
-### Changed
-- 
-
-### Security
-- 
-
-## [1.6.2] - 2026-04-19
-
-### Added
-- 
-
-### Changed
-- 
-
-### Security
-- 
-
-## [1.4.0] - 2026-04-19
+## [1.1.0] - 2026-04-19
 
 ### Added
 - Implementación de **Rate-Limiting exponencial** para proteger contra ataques de fuerza bruta en la pantalla de bloqueo.

@@ -8,7 +8,7 @@ Below are the official open-source project branches that are currently receiving
 
 | Version | Actively Supported? |
 | ------- | ------------------ |
-| v1.6.x | :white_check_mark: |
+| v1.1.x | :white_check_mark: |
 | Older    | :x:                |
 
 ## Current Scope and Limitations
