@@ -8,10 +8,10 @@ Below are the official open-source project branches that are currently receiving
 
 | Version | Actively Supported? |
 | ------- | ------------------ |
-| v1.1.x   | :white_check_mark: |
+| v1.1.x | :white_check_mark: |
 | Older    | :x:                |
 
-## Current Scope and Limitations (v1.0.x)
+## Current Scope and Limitations
 
 **USB Guard** is a consumer/pro-sumer grade software. It currently successfully intercepts windows in the User Layer through asynchronous hooks and *TopMost* / *Taskbar Hiding* properties.
 
@@ -25,5 +25,10 @@ Even so, if you believe you have found the mathematical way to break the local `
 1. Send a private email or direct message to the project packager (**Mateo Valencia Ardila**) with the subject `USB GUARD VULNERABILITY`.
 2. Provide a PoC (Proof of Concept) or a reproducible injection code.
 3. We will try to mitigate the breach by publishing a security "Hotfix" within the weekly cycle following the formal reading of the report. We immensely thank anyone who detects lethal errors with a desire to help.
+
+## Disclosure
+
+We follow responsible disclosure practices. We will not disclose the vulnerability until a patch is available and users have had time to update, unless it's in the best interest of the community.
+
 
 

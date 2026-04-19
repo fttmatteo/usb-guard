@@ -43,10 +43,15 @@ Most commercial "locker" software only checks if a text file exists inside the U
 
 ## Contributing
 
-This ecosystem has been packaged for the open-source world. Anyone is welcome to contribute C++ Hooks, credential improvements, or optimizations! Please read `CONTRIBUTING.en.md` before making a *Pull Request*.
+Do you want to improve USB Guard? You're welcome! Please review our [CONTRIBUTING.en.md](CONTRIBUTING.en.md) guide.
+
+## Security
+
+Security is my priority. If you find a vulnerability, please refer to our policy in [SECURITY.en.md](SECURITY.en.md).
 
 ## Credits and License
 
 Created and maintained by **[Mateo Valencia Ardila](https://github.com/fttmatteo)**.
 
 This software operates under the **MIT License**. You are free to distribute, edit, or use this architectural base even for commercial development under the mandatory condition of explicitly preserving the copyright and attribution paragraphs to Mateo Valencia as the main creator. (Read the `LICENSE` document for more legal instructions).
+

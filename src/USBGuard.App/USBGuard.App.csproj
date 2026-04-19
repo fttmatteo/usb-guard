@@ -14,6 +14,7 @@
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

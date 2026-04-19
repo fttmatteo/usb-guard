@@ -1,4 +1,4 @@
-# 🛡️ USB Guard
+﻿# 🛡️ USB Guard
 
 *[Read in English](README.en.md)*
 
@@ -43,10 +43,15 @@ La mayoría de los programas comerciales "baratos" solo verifican si un archivo 
 
 ## Contribuciones
 
-Este ecosistema ha sido empaquetado para el mundo del código abierto. ¡Cualquiera es bienvenido a aportar C++ Hooks, mejoras en credenciales o optimización! Por favor lee `CONTRIBUTING.md` antes de crear un *Pull Request*.
+¿Quieres mejorar USB Guard? ¡Eres bienvenido! Por favor revisa nuestra guía de [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Seguridad
+
+La seguridad es mi prioridad. Si encuentras una vulnerabilidad, por favor consulta nuestra política en [SECURITY.md](SECURITY.md).
 
 ## Créditos y Licencia
 
 Creado y mantenido por **[Mateo Valencia Ardila](https://github.com/fttmatteo)**.
 
 Este software operada bajo la **Licencia MIT**. Eres libre de distribuir, editar o utilizar esta base arquitectónica incluso para desarrollo comercial bajo la principal condición obligatoria de preservar explícitamente los párrafos de derechos de autor y reconocimiento a Mateo Valencia como creador matriz. (Lee el documento `LICENSE` para más instrucciones legales).
+

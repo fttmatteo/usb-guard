@@ -24,5 +24,25 @@ Si deseas trabajar en vulnerabilidades o ampliar el espectro, recomendamos inves
 2. **Convenciones Visuales:** Cualquier rediseño debe fluir a través de los estilos de `WPF-UI`. Evita sobrecargar colores rígidos y prioriza componentes con opacidades para fusionar visualmente tu componente con fondos de escritorio nativos.
 3. No envíes PRs rompiendo la estructura de licenciamiento (Atribución requerida) de Mateo Valencia Ardila.
 
----
+## Proceso de Pull Request
+
+1. **Crear una rama**: `feat/tu-funcion` o `fix/tu-correccion`.
+2. **Commit de cambios**: Asegúrate de que las pruebas pasen localmente.
+3. **Crear el PR**: Describe los cambios, el "Por qué" y cualquier cambio disruptivo (breaking change).
+4. **Revisión**: Espera el feedback del mantenedor.
+
+## Fork
+
 Para iniciar, haz un Fork, abre tu rama (`git checkout -b feature/MiInventoAsombroso`), inyecta tu código y sube tu historia (`git commit -m 'Hice esta locura'`). ¡Quedamos sumamente atentos!
+
+## Checklist
+
+- [ ] Mi código sigue las guías de estilo de este proyecto.
+- [ ] He realizado una auto-revisión de mi propio código.
+- [ ] He comentado mi código, especialmente en áreas difíciles de entender.
+- [ ] He realizado los cambios correspondientes en la documentación.
+- [ ] Mis cambios no generan nuevas advertencias (warnings).
+- [ ] He añadido pruebas que demuestran que mi corrección es efectiva o que mi función funciona.
+
+## Licencia
+Al contribuir, aceptas que tus contribuciones estarán bajo la **Licencia MIT** del proyecto.
