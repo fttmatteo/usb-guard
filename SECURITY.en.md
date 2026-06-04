@@ -1,10 +1,10 @@
-﻿# Security Policy
+# Security Policy
 
 *[Leer en Español](SECURITY.md)*
 
 ## Supported Versions
 
-Below are the official open-source project branches that are currently receiving biological patches and network security architectural fixes.
+Below are the official open-source project branches that are currently receiving critical patches and security architectural fixes.
 
 | Version | Actively Supported? |
 | ------- | ------------------ |

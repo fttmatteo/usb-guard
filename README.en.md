@@ -1,14 +1,17 @@
-﻿# 🛡️ USB Guard
+# 🛡️ USB Guard
 
 *[Leer en Español](README.md)*
 
 A powerful Zero-Trust security system for Windows environments that transforms any standard USB drive into a Cryptographic Master Key to lock and unlock your computer.
 
 <p>
-  <img src="https://img.shields.io/badge/Version-1.1.0-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet" alt=".NET 10" />
   <img src="https://img.shields.io/badge/WPF-UI-0078D4?style=for-the-badge&logo=windows" alt="WPF UI" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/Version-1.1.0-blue.svg" alt="Version">
 </p>
 
 [![Download usb-guard](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/usb-guard/files/latest/download)
@@ -25,7 +28,10 @@ A powerful Zero-Trust security system for Windows environments that transforms a
 ## Quick Start & Installation
 
 > [!IMPORTANT]
-> For the executable (`.exe`) to work correctly, you must ensure that Windows **Smart App Control** is **Turned off** in the operating system's security settings.
+> **Windows Security Notice (Smart App Control & Defender):**
+> Because this application interacts directly at a low level with physical USB ports and requires Administrator privileges, it is normal for Windows to display security warnings when running the standalone executable. This happens for two specific reasons:
+> 1. **Smart App Control:** Being an independent `.exe` distributed without a paid digital signature, this strict Windows 11 system will block it by default. You must **turn off Smart App Control** in your Windows security settings to use the app.
+> 2. **Windows Defender / SmartScreen:** The antivirus may mistakenly flag it as an "Unrecognized app" or PUA (False Positive) due to the nature of its elevated permissions. The current version has been validated through the *Microsoft Security Intelligence* portal. You can safely bypass the warning by clicking "More info" -> "Run anyway".
 
 1. **Build:** Open the `USBGuard.sln` solution in Visual Studio. Ensure you have the **.NET 10.0 for Windows (WPF)** SDK installed.
 2. **Release:** Change the build profile from "Debug" to "Release" to maximize obfuscation and performance, and press F5.

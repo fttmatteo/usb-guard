@@ -1,10 +1,10 @@
-﻿# Política de Seguridad
+# Política de Seguridad
 
 *[Read in English](SECURITY.en.md)*
 
 ## Versiones Soportadas
 
-A continuación, se indican las ramas oficiales del proyecto de código abierto que en este momento reciben parches biológicos y correcciones arquitectónicas de seguridad de la red.
+A continuación, se indican las ramas oficiales del proyecto de código abierto que en este momento reciben parches críticos y correcciones arquitectónicas de seguridad.
 
 | Versión | ¿Soportada Activamente? |
 | ------- | ------------------ |
