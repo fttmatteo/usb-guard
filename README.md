@@ -14,22 +14,6 @@ Un poderoso sistema de seguridad Zero-Trust para entornos Windows que transforma
   <img src="https://img.shields.io/badge/Versi%C3%B3n-1.1.0-blue.svg" alt="Versión">
 </p>
 
-<!-- Begin  Tag -->
-<div class="sf-root" data-id="4083084" data-badge="oss-users-love-us-black" style="width:125px">
-    <a href="https://sourceforge.net/projects/usb-guard/" target="_blank">usb-guard</a>
-</div>
-<script>(function () {var sc=document.createElement('script');sc.async=true;sc.src='https://b.sf-syn.com/badge_js?sf_id=4083084';var p=document.getElementsByTagName('script')[0];p.parentNode.insertBefore(sc, p);})();
-</script>
-<!-- End  Tag -->
-
-<!-- Begin  Tag -->
-<div class="sf-root" data-id="4083084" data-badge="oss-rising-star-black" data-metadata="achievement=oss-rising-star" style="width:125px">
-    <a href="https://sourceforge.net/projects/usb-guard/" target="_blank">usb-guard</a>
-</div>
-<script>(function () {var sc=document.createElement('script');sc.async=true;sc.src='https://b.sf-syn.com/badge_js?sf_id=4083084';var p=document.getElementsByTagName('script')[0];p.parentNode.insertBefore(sc, p);})();
-</script>
-<!-- End  Tag -->
-
 [![Download usb-guard](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/usb-guard/files/latest/download)
 
 [![Download usb-guard](https://img.shields.io/sourceforge/dt/usb-guard.svg)](https://sourceforge.net/projects/usb-guard/files/latest/download)
